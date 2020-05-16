@@ -1,4 +1,4 @@
-<project name="Force"  basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+
 
 <taskdef resource="net/sf/antcontrib/antlib.xml">
 	<classpath>
@@ -63,5 +63,3 @@
 			</sequential>
 		</for>
 </target>
-
-</project>
