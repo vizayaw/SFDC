@@ -1,6 +1,6 @@
 
 
-<<project default="default_target" name="Example project">
+<project default="default_target" name="Example project">
    <taskdef resource="net/sf/antcontrib/antlib.xml">
 	<classpath>
 		<pathelement location="${basedir}/ant-salesforce.jar" />        	
