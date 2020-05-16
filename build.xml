@@ -1,6 +1,7 @@
 
 
-<taskdef resource="net/sf/antcontrib/antlib.xml">
+<<project default="default_target" name="Example project">
+   <taskdef resource="net/sf/antcontrib/antlib.xml">
 	<classpath>
 		<pathelement location="${basedir}/ant-salesforce.jar" />        	
 	</classpath>
@@ -63,3 +64,5 @@
 			</sequential>
 		</for>
 </target>
+
+</project>
