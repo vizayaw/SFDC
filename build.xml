@@ -1,8 +1,11 @@
-<taskdef resource="net/sf/antcontrib/antlib.xml">
-		<classpath>
-			<pathelement location="lib/ant-contrib-1.0b3.jar"/>
-		</classpath>
+<project name="Force"  basedir="." xmlns:sf="antlib:com.salesforce">
+
+<taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+	<classpath>
+		<pathelement location="ant-salesforce.jar" />        	
+	</classpath>
 </taskdef>
+
 <macrodef name="gitDiff">
 		<sequential>
 			<exec executable="git" outputproperty="git.diff">
@@ -60,3 +63,5 @@
 			</sequential>
 		</for>
 </target>
+
+</project>
