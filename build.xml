@@ -1,8 +1,8 @@
-<project name="Force"  basedir="." xmlns:sf="antlib:com.salesforce">
+<project name="Force"  basedir="." xmlns:ac="antlib:net.sf.antcontrib">
 
-<taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+<taskdef resource="net/sf/antcontrib/antlib.xml">
 	<classpath>
-		<pathelement location="ant-salesforce.jar" />        	
+		<pathelement location="${basedir}/ant-salesforce.jar" />        	
 	</classpath>
 </taskdef>
 
