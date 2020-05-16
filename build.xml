@@ -1,6 +1,5 @@
-<project name="Force"  basedir="." xmlns:sf="antlib:com.salesforce">
 
-<taskdef resource="net/sf/antcontrib/antlib.xml">
+<taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
 	<classpath>
 		<pathelement location="ant-salesforce.jar" />        	
 	</classpath>
@@ -63,5 +62,3 @@
 			</sequential>
 		</for>
 </target>
-
-</project>
