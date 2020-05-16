@@ -1,3 +1,4 @@
+<project name="Force"  basedir="." xmlns:sf="antlib:com.salesforce">
 
 <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
 	<classpath>
@@ -62,3 +63,5 @@
 			</sequential>
 		</for>
 </target>
+
+</project>
