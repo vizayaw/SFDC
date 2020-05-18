@@ -1,6 +1,6 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
-agent { node { label 'Salesforce Agent' }
+node {
 
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
