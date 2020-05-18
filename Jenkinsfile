@@ -8,7 +8,7 @@ node {
 
     def HUB_ORG=env.SF_USERNAME
     def SFDC_HOST = env.SF_INSTANCE_URL
-    def JWT_KEY_CRED_ID = env.SERVER_KEY_CREDENTALS_ID
+    def JWT_KEY_CRED_ID = env.JWT_KEY_CRED_ID
     def CONNECTED_APP_CONSUMER_KEY=env.SF_CONSUMER_KEY
 
     println 'KEY IS' 
