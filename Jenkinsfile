@@ -25,15 +25,16 @@ node ('SF-Slave') {
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
-            
+            if (isUnix()) {
+                rc = sh returnStatus: true, script: "sfdx version"
+            }else{
+                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+            }
+            if (rc != 0) { error 'Salesforce org authorization failed' }
+
+			println rc
 			
-			// need to pull out assigned username
-			if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d force-app/main/default -u ${HUB_ORG}"
-			}
-			  
+					  
             printf rmsg
             println('Hello from a Job DSL script!')
             println(rmsg)
