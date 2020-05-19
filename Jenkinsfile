@@ -1,6 +1,6 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
-node ('SF-Slave') {
+node {
 
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
@@ -8,7 +8,7 @@ node ('SF-Slave') {
 
     def HUB_ORG=env.SF_USERNAME
     def SFDC_HOST = env.SF_INSTANCE_URL
-    def JWT_KEY_CRED_ID = env.SERVER_KEY_CREDENTALS_ID
+    def JWT_KEY_CRED_ID = 'fa4a9e11-3878-4899-9005-23848c66cf9b'
     def CONNECTED_APP_CONSUMER_KEY=env.SF_CONSUMER_KEY
 
     println 'KEY IS' 
@@ -16,7 +16,8 @@ node ('SF-Slave') {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
-    def toolbelt = 'sfdx'
+    def toolbelt = tool 'toolbelt'
+
 
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
