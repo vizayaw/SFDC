@@ -26,6 +26,7 @@ node ('SF-Slave') {
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
             if (isUnix()) {
+                export SFDX_AUDIENCE_URL= 'https://test.salesforce.com'
                 rc = sh returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid 3MVG9ahGHqp.k2_yvho1PMtRAu3potP2cQmGHbOVHTzS.e7G5QdUnSdeBpP.Qa7ICtmZyfpWSiKlrrlXFRu2Q --jwtkeyfile SFDCCert3 --username vsingam@wm.com.wastebits --instanceurl https://test.salesforce.com"
             }else{
                  rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
