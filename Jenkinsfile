@@ -2,7 +2,7 @@
 
 import groovy.json.JsonSlurperClassic
 
-node ('SF-Slave'){
+node {
 
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
     def SF_USERNAME=env.SF_USERNAME
