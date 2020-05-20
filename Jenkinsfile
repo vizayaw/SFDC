@@ -4,7 +4,7 @@ import groovy.json.JsonSlurperClassic
 
 node ('SF-Slave'){
 
-    def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
+    def SF_CONSUMER_KEY='3MVG9ahGHqp.k2_yvho1PMtRAu6xUPPHMOuGASc3bBD.qImBOXwtrGsYpbiawcGZelkOaIDFo4KGxwb8o5qbA'
     def SF_USERNAME=env.SF_USERNAME
     def SERVER_KEY_CREDENTALS_ID='SFDCCert3'  
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL
