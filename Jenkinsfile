@@ -2,11 +2,11 @@
 
 import groovy.json.JsonSlurperClassic
 
-node {
+node ('SF-Slave'){
 
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
     def SF_USERNAME=env.SF_USERNAME
-    def SERVER_KEY_CREDENTALS_ID='fa4a9e11-3878-4899-9005-23848c66cf9b'  
+    def SERVER_KEY_CREDENTALS_ID='SFDCCert3'  
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL
 
     def toolbelt = tool 'toolbelt'
@@ -41,7 +41,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Create Package Install Scratch Org') {
-                rc = command "\"${toolbelt}\" force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
+                rc = command "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
                 if (rc != 0) {
                     error 'Salesforce org authorization failed.'
                 }
