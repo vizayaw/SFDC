@@ -37,13 +37,24 @@ node ('SF-Slave'){
         withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
             // -------------------------------------------------------------------------
-            // Create new scratch org to install package to.
+            // Authorize the Salesforce Org.
             // -------------------------------------------------------------------------
 
-            stage('Create Package Install Scratch Org') {
+            stage('Authorize the Salesforce Org') {
                 rc = command "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
                 if (rc != 0) {
                     error 'Salesforce org authorization failed.'
+                }
+            }
+
+            // -------------------------------------------------------------------------
+            // Deploy the code.
+            // -------------------------------------------------------------------------
+
+            stage('Deploy the code') {
+                rc = command "${toolbelt} force:mdapi:deploy -d force-app/main/default -u ${SF_USERNAME}"
+                if (rc != 0) {
+                    error 'Deployment failed.'
                 }
             }
         }
