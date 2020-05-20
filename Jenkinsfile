@@ -6,7 +6,7 @@ node ('SF-Slave'){
 
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
     def SF_USERNAME=env.SF_USERNAME
-    def SERVER_KEY_CREDENTALS_ID='SFDCCert'  
+    def SERVER_KEY_CREDENTALS_ID='SFDCCert3'  
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL
 
     def toolbelt = tool 'toolbelt'
