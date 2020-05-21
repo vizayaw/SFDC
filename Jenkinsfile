@@ -52,7 +52,7 @@ node ('SF-Slave'){
             // -------------------------------------------------------------------------
 
             stage('Deploy the code') {
-                rc = command "SFDX_USE_GENERIC_UNIX_KEYCHAIN=true ${toolbelt} force:mdapi:deploy -d force-app/main/default -u ${SF_USERNAME}"
+                rc = command "SFDX_USE_GENERIC_UNIX_KEYCHAIN=true ${toolbelt} force:source:push -u ${SF_USERNAME}"
                 if (rc != 0) {
                     error 'Deployment failed.'
                 }
