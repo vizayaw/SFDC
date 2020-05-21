@@ -40,9 +40,8 @@ node ('SF-Slave'){
             // Authorize the Salesforce Org.
             // -------------------------------------------------------------------------
 
-            stage('Authorize the Salesforce Org') {
-                export SFDX_USE_GENERIC_UNIX_KEYCHAIN = true
-                rc = command "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
+            stage('Authorize the Salesforce Org') {               
+                rc = command "SFDX_USE_GENERIC_UNIX_KEYCHAIN=true ${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
                 if (rc != 0) {
                     error 'Salesforce org authorization failed.'
                 }
