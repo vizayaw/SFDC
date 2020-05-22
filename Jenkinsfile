@@ -2,11 +2,11 @@
 
 import groovy.json.JsonSlurperClassic
 
-node ('SF-Slave'){
+node {
 
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
     def SF_USERNAME=env.SF_USERNAME
-    def SERVER_KEY_CREDENTALS_ID='SFDXKey'  
+    def SERVER_KEY_CREDENTALS_ID=env.JWT_CRED_ID_DH  
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL
 
     def toolbelt = tool 'toolbelt'
@@ -16,7 +16,7 @@ node ('SF-Slave'){
     println SF_USERNAME
     println SF_INSTANCE_URL
     println SF_CONSUMER_KEY
-
+    
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
@@ -24,6 +24,7 @@ node ('SF-Slave'){
 
     stage('checkout source') {
         checkout scm
+        
     }
 
 
@@ -41,7 +42,7 @@ node ('SF-Slave'){
             // -------------------------------------------------------------------------
 
             stage('Authorize the Salesforce Org') {               
-                rc = command "SFDX_USE_GENERIC_UNIX_KEYCHAIN=true ${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
+                rc = command "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
                 if (rc != 0) {
                     error 'Salesforce org authorization failed.'
                 }
@@ -52,7 +53,7 @@ node ('SF-Slave'){
             // -------------------------------------------------------------------------
 
             stage('Deploy the code') {
-                rc = command "SFDX_USE_GENERIC_UNIX_KEYCHAIN=true ${toolbelt} force:source:deploy -p force-app/main/default  -u ${SF_USERNAME}"
+                rc = command "${toolbelt} force:source:deploy -p force-app/main/default  -u ${SF_USERNAME}"
                 if (rc != 0) {
                     error 'Deployment failed.'
                 }
