@@ -24,6 +24,9 @@ node {
 
     stage('checkout source') {
         checkout scm
+        changedFiles = sh(returnStdout: true, script: 'git -P show --pretty="" --name-only').split()
+        echo "Changed files are: ${changedFiles}"
+        echo  "length: ${changedFiles.length}"
         
     }
 
@@ -53,7 +56,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Deploy the code') {
-                rc = command "${toolbelt} force:source:deploy -p force-app/main/default  -u ${SF_USERNAME}"
+                rc = command "${toolbelt} force:source:deploy -p ${changedFiles}  -u ${SF_USERNAME}"
                 if (rc != 0) {
                     error 'Deployment failed.'
                 }
